@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "format": "prettier --write \"src/**/*.{js,jsx,css,json}\"",
-    "lint": "eslint \"**/*.{js,jsx}\""
+    "lint": "eslint \"**/*.{js,jsx}\"",
+    "dev": "parcel src/index.html"
   },
   "devDependencies": {
     "eslint": "^5.9.0",
