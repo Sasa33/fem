@@ -1,67 +1,18 @@
 import React from "react";
 import { render } from "react-dom";
-import pf from "petfinder-client";
-import Pet from "./Pet";
-
-const petfinder = pf({
-  key: process.env.API_KEY,
-  secret: process.env.API_SECRET
-});
+import { Router } from "@reach/router";
+import Details from "./Details";
+import Results from "./Results";
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pets: []
-    };
-  }
-
-  componentDidMount() {
-    petfinder.pet
-      .find({ output: "full", location: "Seattle, WA" })
-      .then(data => {
-        let pets;
-        const foundPets = data.petfinder.pets;
-
-        if (foundPets && foundPets.pet) {
-          if (Array.isArray(foundPets.pet)) {
-            pets = foundPets.pet;
-          } else {
-            pets = [foundPets.pet];
-          }
-        } else {
-          pets = [];
-        }
-
-        this.setState({
-          pets
-        });
-      });
-  }
-
   render() {
     return (
       <div>
         <h1>Adopt Me!</h1>
-        {this.state.pets.map(pet => {
-          let breed;
-          const petBreed = pet.breeds.breed;
-          if (Array.isArray(petBreed)) {
-            breed = petBreed.join(", ");
-          } else {
-            breed = petBreed;
-          }
-          return (
-            <Pet
-              key={pet.id}
-              animal={pet.animal}
-              name={pet.name}
-              breed={breed}
-              media={pet.media}
-              location={`${pet.contact.city}, ${pet.contact.state}`}
-            />
-          );
-        })}
+        <Router>
+          <Results path="/" />
+          <Details path="/details/:id" />
+        </Router>
       </div>
     );
   }
