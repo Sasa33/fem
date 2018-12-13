@@ -1,14 +1,15 @@
 import React from "react";
+import { Link } from "@reach/router";
 
 const Pet = props => {
-  const { name, animal, breed, media, location } = props;
+  const { name, animal, breed, media, location, id } = props;
   let photos = [];
   if (media && media.photos && media.photos.photo) {
     photos = media.photos.photo.filter(photo => photo["@size"] === "pn");
   }
 
   return (
-    <div className="pet">
+    <Link to={`/details/${id}`} className="pet">
       <div className="image-container">
         <img src={photos[0].value} alt={name} />
       </div>
@@ -18,7 +19,7 @@ const Pet = props => {
           {animal} - {breed} - {location}
         </h2>
       </div>
-    </div>
+    </Link>
   );
 };
 
