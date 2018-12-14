@@ -3,12 +3,9 @@ import petfinder from "./petfinder";
 import Pet from "./Pet";
 
 class Results extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      pets: []
-    };
-  }
+  state = {
+    pets: []
+  };
 
   componentDidMount() {
     petfinder.pet

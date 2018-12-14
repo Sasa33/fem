@@ -3,12 +3,9 @@ import petfinder from "./petfinder";
 import { navigate } from "@reach/router";
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true
-    };
-  }
+  state = {
+    loading: true
+  };
 
   componentDidMount() {
     petfinder.pet
