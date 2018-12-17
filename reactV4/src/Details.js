@@ -1,6 +1,7 @@
 import React from "react";
 import petfinder from "./petfinder";
 import { navigate } from "@reach/router";
+import Carousel from "./Carousel";
 
 class Details extends React.Component {
   state = {
@@ -38,7 +39,22 @@ class Details extends React.Component {
   }
 
   render() {
-    return <h1>hi!</h1>;
+    if (this.state.loading) {
+      return <h1>loading … </h1>;
+    }
+
+    const { animal, breed, location, description, media } = this.state;
+
+    return (
+      <div className="details">
+        <Carousel media={media} />
+        <div>
+          <h1>{name}</h1>
+          <h2>{`${animal} — ${breed} — ${location}`}</h2>
+          <p>{description}</p>
+        </div>
+      </div>
+    );
   }
 }
 
