@@ -18,7 +18,7 @@ class Carousel extends React.Component {
 
   handleClick = e => {
     this.setState({
-      active: +e.target.dataset.index
+      active: +e.target.dataset.index // + converts string to number
     });
   };
 
